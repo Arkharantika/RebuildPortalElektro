@@ -4,6 +4,14 @@
 
 @section('content')
 <div class="content">
+
+<!-- Alert Pemberitahuan -->
+@if(session()->get('message'))
+        <div class="alert alert-info alert-dismissable mt-20" role="alert">
+            <strong> {{ session()->get('message') }}  </strong> 
+        </div>
+    @endif
+
     <!-- Validation Wizards -->
     <h2 class="content-heading">Pengajuan Tugas Akhir</h2>
     <div class="row">
