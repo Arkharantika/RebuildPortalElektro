@@ -297,3 +297,6 @@ Route::namespace('Admin')->name('kalab.')->middleware('can:kalab')->group(functi
     //Bebas Lab
     Route::resource('bebaslab','Kalab\KalabController');
 });
+
+//Route Rebuild
+Route::resource('PresensiSeminarKP','KehadiranSeminarKPController');

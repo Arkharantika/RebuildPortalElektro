@@ -302,21 +302,16 @@
                                 <span class="sidebar-mini-visible">KP</span><span class="sidebar-mini-hidden text-primary">Kerja Praktek</span>
                             </li>
                             <li>
+                            <a class="{{ request()->is('kp/seminar') || request()->is('kp/seminar/*') ? ' active' : '' }}" href="{{url('PresensiSeminarKP')}}">
+                                    <i class="si si-note"></i><span class="sidebar-mini-hide">Bantuan Catatan Klaim Seminar KP</span>
+                                </a>
+                            </li>             
+                            <li>
                                 <a class="{{ request()->is('kp/pendaftaran') || request()->is('kp/pendaftaran/*') ? ' active' : '' }}" href="{{route('kp.pendaftaran.index')}}">
                                     <i class="si si-badge"></i><span class="sidebar-mini-hide">Pendaftaran KP</span>
                                 </a>
                             </li>
-                            <!-- <li class="{{ request()->is('kp/pelaksanaan/*') ? ' open' : '' }}">
-                                <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-bulb"></i><span class="sidebar-mini-hide">Pelaksanaan Kerja Praktek</span></a>
-                                <ul>
-                                    <li>
-                                        <a class="{{ request()->is('kp/pelaksanaan/cetak_lmbr_tugas') ? ' active' : '' }}" href="{{url('kp/pelaksanaan/cetak_lmbr_tugas')}}" target="_blank">Cetak Lembar Tugas KP</a>
-                                    </li>
-                                    <li>
-                                        <a class="{{ request()->is('kp/pelaksanaan/cetak_form_nilai') ? ' active' : '' }}" href="{{url('kp/pelaksanaan/cetak_form_nilai')}}" target="_blank">Cetak Form Nilai KP</a>
-                                    </li>
-                                </ul>
-                            </li> -->
+                            
                             <li>
                                 <a class="{{ request()->is('kp/selesaikp') || request()->is('kp/selesaikp/*') ? ' active' : '' }}" href="{{route('kp.selesaikp.index')}}">
                                     <i class="si si-envelope"></i><span class="sidebar-mini-hide">Selesai KP</span>
@@ -355,11 +350,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <!-- <li>
-                                <a class="{{ request()->is('ta/pendaftaran') || request()->is('ta/pendaftaran/*') ? ' active' : '' }}" href="">
-                                    <i class="si si-key"></i><span class="sidebar-mini-hide">Pengajuan TA</span>
-                                </a>
-                            </li> -->
+                            
                             <li>
                                 <a class="{{ request()->is('ta/logbook') || request()->is('ta/logbook/*') ? ' active' : '' }}" href="{{route('ta.logbook.index')}}">
                                     <i class="si si-book-open"></i><span class="sidebar-mini-hide">Log Book TA</span>
@@ -676,28 +667,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <!-- <h6 class="dropdown-header">Header</h6>
-                                <div class="row gutters-tiny text-center mb-5">
-                                    <div class="col-6">
-                                        <button type="button" class="btn btn-sm btn-block btn-alt-secondary" data-toggle="layout" data-action="header_fixed_toggle">Fixed Mode</button>
-                                    </div>
-                                    <div class="col-6">
-                                        <button type="button" class="btn btn-sm btn-block btn-alt-secondary d-none d-lg-block mb-10" data-toggle="layout" data-action="header_style_classic">Classic Style</button>
-                                    </div>
-                                </div>
-                                <h6 class="dropdown-header">Sidebar</h6>
-                                <div class="row gutters-tiny text-center mb-5">
-                                    <div class="col-6">
-                                        <button type="button" class="btn btn-sm btn-block btn-alt-secondary mb-10" data-toggle="layout" data-action="sidebar_style_inverse_off">Light</button>
-                                    </div>
-                                    <div class="col-6">
-                                        <button type="button" class="btn btn-sm btn-block btn-alt-secondary mb-10" data-toggle="layout" data-action="sidebar_style_inverse_on">Dark</button>
-                                    </div>
-                                </div>
-                                <div class="d-none d-xl-block">
-                                    <h6 class="dropdown-header">Main Content</h6>
-                                    <button type="button" class="btn btn-sm btn-block btn-alt-secondary mb-10" data-toggle="layout" data-action="content_layout_toggle">Toggle Layout</button>
-                                </div> -->
+
                             </div>
                         </div>
                         <!-- END Layout Options -->
@@ -752,12 +722,12 @@
 
             <!-- Footer -->
             <footer id="page-footer" class="opacity-0">
-                <div class="content py-20 font-size-sm clearfix">
+                <!-- <div class="content py-20 font-size-sm clearfix">
                     <div class="text-center">
                         &copy; <span class="js-year-copy">2020</span>
                         <a class="font-w600" href="https://www.instagram.com/ydhiksm/" target="_blank">Yudhi Kusuma</a>. All rights reserved.
                     </div>
-                </div>
+                </div> -->
             </footer>
             <!-- END Footer -->
         </div>
