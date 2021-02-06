@@ -65,6 +65,10 @@ Route::name('kp.')->middleware('can:mahasiswa')->group(function(){
     Route::get('kp/pendaftaran/{file}/download', 'KpController@viewFile')->name('pendaftaran.download');
     Route::post('kp/upload/{id}', 'KpController@StoreUpload')->name('pendaftaran.upload');
     Route::resource('kp/pendaftaran','KpController',['except' => ['create','show']]);
+
+    //Route Rebuild Internal (Inside Prefix)
+    Route::get('kp/pendaftaran/ask_surat_tugas','KpController@ask_surat')->name('ask_surat');
+
     //Route Selesai Kp
     Route::resource('kp/selesaikp', 'SelesaikpController',['only' => ['index','update']]);
 
@@ -298,5 +302,5 @@ Route::namespace('Admin')->name('kalab.')->middleware('can:kalab')->group(functi
     Route::resource('bebaslab','Kalab\KalabController');
 });
 
-//Route Rebuild
+//Route Rebuild External (outside from prefix)
 Route::resource('PresensiSeminarKP','KehadiranSeminarKPController');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kp;
 use App\Models\Mahasiswa;
+use App\Models\notifikasi_kp;
 use App\Models\Dosen;
 use App\User;
 use App\Models\Seminarkp;
@@ -47,6 +48,8 @@ class HomeController extends Controller
             //Cek apakah user dosen atau bukan
             if($dosen != null){
                 $kp = Kp::where('status_kp','PENDING')->count();
+                $ask_surat = notifikasi_kp::where('status_ask_surat_tugas',1)->count();
+                // $ask_surat_tugas = notifikasi_kp::all();
                 $semkp = Seminarkp::where('status_seminarkp','PENDING')->count();
                 $ta = Ta::where('status_ta','SETUJU')->where('cetak_ta','0')->count();
                 $semhas = Seminarta::where('status_seminar','SETUJU')->where('cetak_semhas','0')->count();
@@ -66,7 +69,7 @@ class HomeController extends Controller
                 // dd($logbookta);
                 return view('home',compact('dosen','user','kp','semkp','semhas','pendadaran','ta',
                     'tapending','semhaspending','pendadaranpending','ict','meka','sel',
-                    'bimbinganta','bimbingansemhas','bimbinganpendadaran','logbookta'));
+                    'bimbinganta','bimbingansemhas','bimbinganpendadaran','logbookta','ask_surat'));
             //Cek apakah user mahasiswa
             }elseif($mhs != null){
                 $kp = Kp::statuskp($mhs->id)->get()->last();

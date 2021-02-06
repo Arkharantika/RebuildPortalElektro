@@ -291,6 +291,7 @@
             <!-- Open Koordinator Kp  -->
             @can('koordinatorkp')
             <div class="row invisible" data-toggle="appear">
+
                 <div class="col-md-6">
                     <a class="block block-rounded" href="{{route('admin.pengajuan.index')}}">
                         <div class="block-content block-content-full ribbon ribbon-modern ribbon-primary">
@@ -305,6 +306,7 @@
                         </div>
                     </a>
                 </div>
+
                 <div class="col-md-6">
                     <a class="block block-rounded" href="{{route('admin.seminarkp.index')}}">
                         <div class="block-content block-content-full ribbon ribbon-modern ribbon-info">
@@ -314,6 +316,21 @@
                             <div class="text-center py-30">
                                 <i class="fa fa-tasks fa-3x text-info mb-15 float-left"></i>
                                 <h5 class="mb-0">Mahasiswa Mendaftar Seminar KP</h5>
+                                <div class="text-muted">Mohon segera berikan tanggapan</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6">
+                    <a class="block block-rounded" href="">
+                        <div class="block-content block-content-full ribbon ribbon-modern ribbon-info">
+                            <div class="ribbon-box">
+                            {{$ask_surat ?? ''}}
+                            </div>
+                            <div class="text-center py-30">
+                                <i class="fa fa-briefcase fa-3x text-info mb-15 float-left"></i>
+                                <h5 class="mb-0">Mahasiswa Mengajukan Permohonan Surat Tugas KP</h5>
                                 <div class="text-muted">Mohon segera berikan tanggapan</div>
                             </div>
                         </div>

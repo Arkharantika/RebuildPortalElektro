@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Kp;
 use App\Models\Kp;
 use App\Models\Suratkp;
 use App\Models\Acckp;
+use App\Models\Mahasiswa;
+use App\Models\notifikasi_kp;
 use App\Models\Accpembimbingkp;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -97,6 +99,15 @@ class BalasanController extends Controller
                     'no_surat' => $request->no_surat,
                     'tanggal_surat' => $request->tanggal_surat,
                 ]);
+                
+
+                $confirm = KP::where('kp.id',$id)->get()->first()->mahasiswa_id;
+                $checklist = Mahasiswa::where('ref_mahasiswa.id',$confirm)->get()->first()->nim;
+                notifikasi_kp::where('nim_mhs',$checklist)->update([
+                    'status_ask_surat_tugas' => 0,
+                ]);
+
+
 
                 return redirect(route('admin.permohonan.index'))->with('message','Pengajuan KP Berhasil di Update!');
                 break;

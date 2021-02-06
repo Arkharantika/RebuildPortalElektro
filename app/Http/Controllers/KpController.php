@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\notifikasi_kp;
 use App\Models\Kp;
 use App\Models\Rencanakp;
 use App\Models\Dokumenkp;
@@ -39,13 +40,14 @@ class KpController extends Controller
         $edit = Kp::edit($nim)->get()->last();
         $waiting = Kp::waiting($nim)->get()->last();
         $data = Mahasiswa::pemkp($nim)->first();
-        // dd($data);
+
+        $checking = notifikasi_kp::where('nim_mhs',$nim)->get()->first();
         
         if ($setuju != null) {
-            return view('kp.kp_setuju',compact('setuju')); //Input pengajuan KP Disetujui
+            return view('kp.kp_setuju',compact('setuju','checking')); //Input pengajuan KP Disetujui
         }else if ($waiting != null) {
             $accPenugasankp = Accpembimbingkp::where('mahasiswa_id','=',$waiting->mahasiswa_id)->first();
-            return view('kp.kp_waiting',compact('waiting','accPenugasankp')); //KP menunggu balasan
+            return view('kp.kp_waiting',compact('waiting','accPenugasankp','checking')); //KP menunggu balasan
         }else if ($pending != null) {
             return view('kp.kp_pending',compact('pending')); //Input pengajuan berhasil diajukan
         }else if ($edit != null) {
@@ -362,5 +364,20 @@ class KpController extends Controller
     public function viewFile($file){
         $kp = Kp::where('file_balasan', $file)->firstOrFail();
         return redirect(asset('file_balasankp/'.$kp->file_balasan));
+    }
+
+    public function ask_surat(){
+        
+        $mhs = Mahasiswa::mhs(Auth::user()->nim)->first();
+        $nimnya = $mhs->nim;
+        $namanya = $mhs->nama_mhs;
+
+        notifikasi_kp::create([
+            'nim_mhs' => $nimnya,
+            'status_ask_surat_tugas' => 1,
+        ]);
+
+        return redirect('kp/pendaftaran')->with('message','Anda berhasil mengajukan permintan Surat Tugas KP !!');
+
     }
 }
