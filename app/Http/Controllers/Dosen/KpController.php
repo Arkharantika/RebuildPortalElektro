@@ -8,6 +8,7 @@ use App\Models\Accpembimbingkp;
 use App\Models\Kp;
 use App\Models\Acckp;
 use App\Models\Rencanakp;
+use App\Models\notifikasi_kp;
 use App\Models\Dokumenkp;
 use App\Models\Nilaikp;
 use App\Http\Controllers\Controller;
@@ -106,11 +107,15 @@ class KpController extends Controller
 
     public function updatePenugasankp(Request $request)
     {
+        $checklist = Accpembimbingkp::join('ref_mahasiswa','ref_mahasiswa.id','=','kp_acc_pembimbing.mahasiswa_id')
+        ->where('mahasiswa_id',$request->mhs_id)->get()->first();
+
         $validatedData = $request->validate([
             'penugasan' => 'required',
             'mhs_id' => 'required',
             'kp_id' => 'required',
         ]);
+
         $data = Accpembimbingkp::where('mahasiswa_id',$request->mhs_id)->first();
         $data->penugasan_kp = 1;
         $data->save();
@@ -119,6 +124,11 @@ class KpController extends Controller
         $kp->penugasan_kp = $request->penugasan;
         $kp->tgl_penugasan_kp = date('Y-m-d');
         $kp->save();
+
+        notifikasi_kp::create([
+            'nim_mhs' => $checklist->nim,
+            'status_ask_surat_tugas' => 1,
+        ]);
 
         return redirect()->back();
     }

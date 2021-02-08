@@ -176,7 +176,7 @@
                                 <a class="{{ request()->is('usermanual') || request()->is('usermanual/*') ? ' active' : '' }}" 
                                 href=" @if(Auth::user()->can('manage-users'))
                                     {{route('usermanual.create')}} @else {{route('usermanual.index')}} @endif">
-                                    <i class="si si-bag"></i><span class="sidebar-mini-hide">Users Manual</span>
+                                    <i class="si si-bag"></i><span class="sidebar-mini-hide">test button</span>
                                 </a>
                             </li>
                             @can('manage-users')

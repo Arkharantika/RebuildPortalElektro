@@ -323,19 +323,35 @@
                 </div>
 
                 <div class="col-md-6">
-                    <a class="block block-rounded" href="">
+                    <a class="block block-rounded">
                         <div class="block-content block-content-full ribbon ribbon-modern ribbon-info">
                             <div class="ribbon-box">
-                            {{$ask_surat ?? ''}}
+                            {{$ask_permohonan ?? ''}}
                             </div>
                             <div class="text-center py-30">
                                 <i class="fa fa-briefcase fa-3x text-info mb-15 float-left"></i>
-                                <h5 class="mb-0">Mahasiswa Mengajukan Permohonan Surat Tugas KP</h5>
+                                <h5 class="mb-0">Mahasiswa Siap Dibuatkan Surat Permohonan KP</h5>
                                 <div class="text-muted">Mohon segera berikan tanggapan</div>
                             </div>
                         </div>
                     </a>
                 </div>
+
+                <div class="col-md-6">
+                    <a class="block block-rounded">
+                        <div class="block-content block-content-full ribbon ribbon-modern ribbon-primary">
+                            <div class="ribbon-box">
+                                {{$ask_surattugas ?? ''}}
+                            </div>
+                            <div class="text-center py-30">
+                                <i class="fa fa-envelope-square fa-3x text-primary mb-15 float-left"></i>
+                                <h5 class="mb-0">Mahasiswa Membutuhkan Persetujuan Kerja Praktik</h5>
+                                <div class="text-muted">Mohon segera berikan tanggapan</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
             </div>
             @endcan
             <!-- Close Koordinator Kp  -->
@@ -438,6 +454,7 @@
                         </div>
                     </a>
                 </div>
+                
             </div>
             @endcan
             <!-- Close Operator Ta -->

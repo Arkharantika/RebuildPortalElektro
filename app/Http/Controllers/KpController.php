@@ -366,18 +366,18 @@ class KpController extends Controller
         return redirect(asset('file_balasankp/'.$kp->file_balasan));
     }
 
-    public function ask_surat(){
+    // public function ask_surat(){
         
-        $mhs = Mahasiswa::mhs(Auth::user()->nim)->first();
-        $nimnya = $mhs->nim;
-        $namanya = $mhs->nama_mhs;
+    //     $mhs = Mahasiswa::mhs(Auth::user()->nim)->first();
+    //     $nimnya = $mhs->nim;
+    //     $namanya = $mhs->nama_mhs;
 
-        notifikasi_kp::create([
-            'nim_mhs' => $nimnya,
-            'status_ask_surat_tugas' => 1,
-        ]);
+    //     notifikasi_kp::create([
+    //         'nim_mhs' => $nimnya,
+    //         'status_ask_surat_tugas' => 1,
+    //     ]);
 
-        return redirect('kp/pendaftaran')->with('message','Anda berhasil mengajukan permintan Surat Tugas KP !!');
+    //     return redirect('kp/pendaftaran')->with('message','Anda berhasil mengajukan permintan Surat Tugas KP !!');
 
-    }
+    // }
 }

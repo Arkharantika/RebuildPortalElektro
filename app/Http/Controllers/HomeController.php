@@ -6,6 +6,7 @@ use App\Models\Kp;
 use App\Models\Mahasiswa;
 use App\Models\notifikasi_kp;
 use App\Models\Dosen;
+use App\Models\Dokumenkp;
 use App\User;
 use App\Models\Seminarkp;
 use App\Models\Ta;
@@ -42,14 +43,20 @@ class HomeController extends Controller
         $mhs = Mahasiswa::mhs(Auth::user()->nim)->first();
         $dosen = Dosen::where('nip',Auth::user()->nim)->first();
         $user = User::find(Auth::user()->id);
+
+
         // dd($kp);
         //Cek apakah user login pertama kali atau tidak, jika tidak makan redirect ke home
         if($user->isLogin == 1){
             //Cek apakah user dosen atau bukan
             if($dosen != null){
                 $kp = Kp::where('status_kp','PENDING')->count();
-                $ask_surat = notifikasi_kp::where('status_ask_surat_tugas',1)->count();
-                // $ask_surat_tugas = notifikasi_kp::all();
+
+                $ask_surattugas = notifikasi_kp::where('status_ask_surat_tugas',1)->count();
+
+                $ask_permohonan = Dokumenkp::where('file_proposal','!=',null)->where('file_balasan',null)->where('file_penugasan',null)
+                ->where('file_surattugas',null)->count();
+
                 $semkp = Seminarkp::where('status_seminarkp','PENDING')->count();
                 $ta = Ta::where('status_ta','SETUJU')->where('cetak_ta','0')->count();
                 $semhas = Seminarta::where('status_seminar','SETUJU')->where('cetak_semhas','0')->count();
@@ -69,7 +76,7 @@ class HomeController extends Controller
                 // dd($logbookta);
                 return view('home',compact('dosen','user','kp','semkp','semhas','pendadaran','ta',
                     'tapending','semhaspending','pendadaranpending','ict','meka','sel',
-                    'bimbinganta','bimbingansemhas','bimbinganpendadaran','logbookta','ask_surat'));
+                    'bimbinganta','bimbingansemhas','bimbinganpendadaran','logbookta','ask_permohonan','ask_surattugas'));
             //Cek apakah user mahasiswa
             }elseif($mhs != null){
                 $kp = Kp::statuskp($mhs->id)->get()->last();
